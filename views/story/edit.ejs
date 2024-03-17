@@ -1,0 +1,74 @@
+<%- include('../partials/header.ejs') %>
+<main>
+    <section id="hero" class="new-hero">
+        <div class="container">
+            <form method="post" action="/stories/<%=story.id%>?_method=PUT" enctype="multipart/form-data">
+                <div class="form-group row mb-2">
+                    <label for="title" class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="title" name="title" value="<%= story.title %>" required>
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label for="content" class="col-sm-2 col-form-label">Details</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="content" name="content" required><%= story.content %></textarea>
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label for="location" class="col-sm-2 col-form-label">Where</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="location" name="location" value="<%= story.location %>" required>
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label for="host" class="col-sm-2 col-form-label">Host Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="host" name="host" value="<%= story.host %>" required>
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label for="category" class="col-sm-2 col-form-label">Category</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="category" name="category" required>
+                            <option value="">Select a Category</option>
+                            <option value="Virtual Fair" <%= story.category === 'Virtual Fair' ? 'selected' : '' %>>Virtual Fair</option>
+                            <option value="Conference" <%= story.category === 'Conference' ? 'selected' : '' %>>Conference</option>
+                            <option value="Webinar" <%= story.category === 'Webinar' ? 'selected' : '' %>>Webinar</option>
+                            <option value="Hackathon" <%= story.category === 'Hackathon' ? 'selected' : '' %>>Hackathon</option>
+                            <option value="Recycle Challenge" <%= story.category === 'Recycle Challenge' ? 'selected' : '' %>>Recycle Challenge</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label for="startTime" class="col-sm-2 col-form-label">Start</label>
+                    <div class="col-sm-10">
+                        <input type="datetime-local" class="form-control" id="startTime" name="startTime" value="<%= story.date + 'T' + story.startTime %>" required>
+                        <!-- <input type="datetime-local" class="form-control" id="startTime" name="startTime" value="<%= story.startTime %>" required> -->
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label for="endTime" class="col-sm-2 col-form-label">End</label>
+                    <div class="col-sm-10">
+                        <input type="datetime-local" class="form-control" id="endTime" name="endTime" value="<%= story.enddate + 'T' + story.endTime %>" required>
+                    </div>
+                <div class="form-group row mb-2">
+                    <label for="image" class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-10">
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                        <% if(story.image) { %>
+                            <img src="<%= story.image %>" alt="Current Image" name="currentImage" style="max-width: 200px; margin-top: 10px;">
+                        <% } %>
+                        <input type="hidden" name="currentimage" value="<%= story.image %>">
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Update Event</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+<%- include('../partials/footer.ejs') %>

@@ -1,0 +1,28 @@
+<%- include('../partials/header.ejs') %>
+<main>
+   <section class="hero">
+      <div class="container">
+         <h2>Events</h2>
+         <% if(categories && categories.length){ %>
+              <% categories.sort().forEach(category => { %> 
+            <div class="categories">
+                <h3><%= category %></h3>
+                <ol>
+                    <% let filteredStories = stories.filter(story => story.category === category); %> 
+                    <% if(filteredStories.length){ %>
+                        <% filteredStories.forEach(story => { %> 
+                            <li><a href="/stories/<%= story.id %>"><%= story.title %></a></li>
+                        <% }); %>
+                    <% } else { %>
+                        <p>There are no stories to display.</p>
+                    <% } %>
+                </ol>
+            </div>
+            <% }); %>
+         <% } else { %>
+             <p>There are no categories to display.</p>
+         <% } %>
+      </div>
+   </section>
+</main>
+<%- include('../partials/footer.ejs') %> 

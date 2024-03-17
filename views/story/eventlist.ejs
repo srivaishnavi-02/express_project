@@ -1,0 +1,52 @@
+<%- include('../partials/header.ejs') %>
+    <main>
+      <section class="hero">  
+        <div class="container d-flex justify-content-center align-items-center">
+          <div>
+            <div class="fw-bold mb-4 p-3 fs-3">
+              <%= story.title%>
+            </div>
+           <div class="d-flex align-items-center">
+              
+              <div class="row">
+                <div class="col-12 col-md-3 col-sm-6 d-flex justify-content-center align-items-center">
+                  <img src="<%= story.image %>" alt="Event image" class="img-fluid"> 
+                  <!-- <img src="/images/recycle.png" alt="Event image" class="img-fluid">  -->
+
+                </div>
+                <div class="col-12 col-md-6 col-sm-6">
+                  <div>
+                    <strong>Category: </strong><%= story.category %>
+                   </div>      
+               <div>
+                <strong>Host: </strong><%= story.host %>
+               </div>  
+               <div>
+                <strong>Date and Time:</strong> <%= story.date + " " + story.startTime + " - " + story.enddate + " " + story.endTime  %>
+               </div>
+               <div>
+                <strong>Location: </strong> <%= story.location %>
+               </div>
+               <div>
+                <strong> Details: </strong><%= story.content %>
+               </div>
+               <small>Posted at <%= story.created %> by <%= story.host %></5></small>
+               <div class="event-actions">
+                <form>
+                    <button class="btn btn-primary" type="submit" formmethod="get" formaction="/stories/<%=story.id%>/edit">Edit</button>
+                    <button class = "btn btn-danger" type="submit" formmethod="post" formaction="/stories/<%=story.id%>?_method=delete">Delete</button>
+               </form>
+            
+            </div>              
+                </div>
+              </div>
+           </div>
+          </div>
+         
+        </div>
+
+      </section>
+      <!-- section ends here -->
+        <!-- Main content goes here -->
+    </main>
+    <%- include('../partials/footer.ejs') %>
