@@ -2,7 +2,14 @@
 <main>
     <section id="hero" class="new-hero">
         <div class="container">
-            <form method="post" action="/stories/<%=story.id%>?_method=PUT" enctype="multipart/form-data">
+            <form method="post" action="/stories/<%=story._id%>?_method=PUT" enctype="multipart/form-data">
+                <% 
+                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true };
+                const startDateTime = new Date(story.startTime);
+                const endDateTime = new Date(story.endTime);
+                const formattedStartTime = startDateTime.toLocaleString('en-US', options);
+                const formattedEndTime = endDateTime.toLocaleString('en-US', options);
+              %>
                 <div class="form-group row mb-2">
                     <label for="title" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
@@ -43,14 +50,13 @@
                 <div class="form-group row mb-2">
                     <label for="startTime" class="col-sm-2 col-form-label">Start</label>
                     <div class="col-sm-10">
-                        <input type="datetime-local" class="form-control" id="startTime" name="startTime" value="<%= story.date + 'T' + story.startTime %>" required>
-                        <!-- <input type="datetime-local" class="form-control" id="startTime" name="startTime" value="<%= story.startTime %>" required> -->
+                        <input type="datetime-local" class="form-control" id="startTime" name="startTime" value="<%= story.startTime %>" required>
                     </div>
                 </div>
                 <div class="form-group row mb-2">
                     <label for="endTime" class="col-sm-2 col-form-label">End</label>
                     <div class="col-sm-10">
-                        <input type="datetime-local" class="form-control" id="endTime" name="endTime" value="<%= story.enddate + 'T' + story.endTime %>" required>
+                        <input type="datetime-local" class="form-control" id="endTime" name="endTime" value="<%= story.endTime %>" required>
                     </div>
                 <div class="form-group row mb-2">
                     <label for="image" class="col-sm-2 col-form-label">Image</label>

@@ -161,7 +161,7 @@ nav li a{
     width: 100%;
     background-size: cover;
     position: relative;
-    max-height: 58vh;
+    max-height: 47vh;
     overflow-y: auto;
     /* padding: 120px 0 60px 0; */
 }
@@ -313,3 +313,6 @@ nav li a{
     margin: 20px auto;
   }
   
+  .custom-padding-left{
+    padding-left: 40px !important;
+  }

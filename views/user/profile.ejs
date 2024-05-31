@@ -1,0 +1,92 @@
+
+<%- include('../partials/header.ejs')%>
+<div class="content hero">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <div class="event-heading text-center mb-4">
+                    <h3 class="display-4"><%= user.firstName %>'s Events</h3>
+                    <hr class="my-4 w-25 mx-auto">
+                </div>                
+                <!-- Events Table -->
+                <% if (stories.length) { %>
+                <div class="m-60">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Category</th>
+                                <th class = "custom-padding-left">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% stories.forEach(story => { %>
+                            <tr>
+                                <td><%= story.title %></td>
+                                <td><%= story.category %></td>
+                                <td>
+                                    <form>
+                                        <button class="btn btn-primary" type="submit" formmethod="get" formaction="/stories/<%=story._id%>/edit">Edit</button>
+                                        <button class="btn btn-danger" type="submit" formmethod="post" formaction="/stories/<%=story._id%>?_method=delete">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+                <% } else { %>
+                    <div class="text-center">
+                        <p>There are no events to display.</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <div class="event-heading text-center mb-4">
+                    <h3 class="display-4"><%= user.firstName %>'s Rsvps</h3>
+                    <hr class="my-4 w-25 mx-auto">
+                </div>                
+                <!-- Events Table -->
+                <% if (rsvps.length) { %>
+                <div class="m-60">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th class = "custom-padding-left">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% rsvps.forEach(rsvp => { %>
+                            <tr>
+                                <td><%= rsvp.story.title %></td>
+                                <td><%= rsvp.story.category %></td>
+                                <td><%= rsvp.status %></td>
+                                <td>
+                                    <form>
+                                        <button class="btn btn-primary" type="submit" formmethod="get" formaction="/stories/<%=rsvp.story._id %>">Edit</button>
+                                        <button class="btn btn-danger" type="submit" formmethod="post" formaction="/stories/rsvp/<%=rsvp._id%>?_method=delete">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+                <% } else { %>
+                    <div class="text-center">
+                        <p>There are no rsvps to display.</p>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+    </div>
+</div>
+<%- include('../partials/footer.ejs')%>
+

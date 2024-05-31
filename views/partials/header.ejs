@@ -15,9 +15,14 @@
             <div class="container-fluid">
               <a href="/"><p>PLANET PERKS</p></a>
               <ul class="nav-links">
-                 <li><a href="/stories/newEvents" >New Event</a></li>
-                 <li><a href="#">Login</a></li>
-                 <li><a href="#">Signup</a></li>
+                <% if(!user){ %>
+                    <li><a href="/users/login">Login</a></li>
+                    <li><a href="/users/new">Signup</a></li>
+                <% } else { %>
+                    <li><a href="/stories/newEvents" >New Event</a></li>
+                    <li><a href='/users/profile'>Profile</a></li>
+                    <li><a href='/users/logout'>Logout</a></li>
+                <% } %>
              </ul>
             </div>
         </nav>
@@ -33,8 +38,49 @@
                     <li class="nav-item">
                         <a href="/stories" >Events</a>
                     </li>
-
                 </ul>
+                <% if(firstName && lastName){ %>
+                    <div class="li-right nav-item text-white">
+                        <ul>
+                            <li>Welcome <%= firstName+' '+lastName %>!</li>
+                        </ul>
+                    </div>
+                <% } %>
               </div>
         </nav>
     </header>
+<!-- 
+<% if(errorMessages.length > 0) {%>
+        <% errorMessages.forEach(message=>{%>
+            <div class='error'>
+                <%=message%>
+            </div>
+        <%});%>
+    <%}%>
+    
+    <% if(successMessages.length > 0) {%>
+        <% successMessages.forEach(message=>{%>
+            <div class='success'>
+                <%=message%>
+            </div>
+        <%});%>
+    <%}%> -->
+
+    
+<div class="container message-container">
+    <% if(errorMessages.length > 0) {%>
+        <% errorMessages.forEach(message=>{%>
+            <div class='alert alert-danger' role='alert'>
+                <%=message%>
+            </div>
+        <%});%>
+    <%}%>
+
+    <% if(successMessages.length > 0) {%>
+        <% successMessages.forEach(message=>{%>
+            <div class='alert alert-success' role='alert'>
+                <%=message%>
+            </div>
+        <%});%>
+    <%}%>
+</div>
